@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>{{ text }}</h1>
+<table style="border: 2px solid black">
+    <thead>
+        <th>Word</th>
+        <th>Frequency</th>
+    </thead>
+    <tbody>
+    {% for token in text.tokens.all %}
+        <tr
+                {% if token.frequency <= 4 %}
+                    style="color:green"
+                {% elif token.frequency <= 10 %}
+                    style="color:yellow"
+                {% else %}
+                    style="color: red"
+                {% endif %}>
+            <td>{{ token.word }}</td>
+            <td>{{ token.frequency }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
